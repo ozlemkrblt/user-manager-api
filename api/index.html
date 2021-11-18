@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Site</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div id="nav" class="navbar navbar-expand-lg pb-0 pt-0 justify-content-center">
+        <div class="row py-2 p-lg-0" style="width: 100%;">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="navbar-brand text-center text-lg-left h-100">
+                    <h2 class="site-logo" style="color: #fff;">User Manager</h2>
+                </div>
+            </div>
+            <div class="col-6 col-md-8 col-lg-9 col-xl-10 d-flex justify-content-end align-items-center">
+                <ul class="navbar-nav nav align-items-center ml-auto float-right">
+                    <li class="nav-item dropdown-user" id="userinfo">
+                        <a type="button" href="#" data-toggle="modal" data-target="#exampleModalCenter" class="nav-link d-flex align-items-center">
+                            <div class="d-sm-flex d-none user-nav">
+                                <p class="mb-0 ml-1">Login</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="content-wrapper" style="overflow-y: auto;">
+        <div class="content-inner">
+            <div class="content">
+                <div class="row">
+                    <div class="col-12 py-5" id="registerForm">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container py-3">
+                                    <h2 class="text-center">Register</h2>
+                                    <hr>
+                                    <div class="row px-lg-5 mx-lg-3 my-2">
+                                        <p class="ml-4 text-success" id="registerSuccess" style="display: none;">Account created successfully!</p>
+                                        <p class="ml-4 text-danger" id="registerError" style="display: none;">An error occurred while creating the account! Please check your information and try again.</p>
+                                    </div>
+                                    <form id="formInput">
+                                        <div class="row px-lg-5 mx-lg-3 my-2">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group p-md-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">First Name</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="firstname" placeholder="First Name" name="firstname" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group p-md-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Last Name</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="lastname" placeholder="Last Name" name="lastname" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row px-lg-5 mx-lg-3 my-2">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group p-md-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">User Name</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group p-md-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Password</span>
+                                                    </div>
+                                                    <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3 justify-content-center">
+                                            <button type="submit" class="btn btn-secondary">Sign in</button>
+                                        </div>
+                                    </form>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 py-5" style="display: none;" id="editModal">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container py-3">
+                                    <h2 class="text-center">Edit User</h2>
+                                    <hr>
+                                    <form id="formEdit">
+                                        <div class="row px-lg-5 mx-lg-3 my-2">
+                                            <div class="form-group col-12">
+                                                <div class="input-group p-md-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Username</span>
+                                                    </div>
+                                                    <input type="text" placeholder="Username" class="form-control" name="username" disabled
+                                                           required id="disabledInput">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row px-lg-5 mx-lg-3 my-2">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group p-md-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">First Name</span>
+                                                    </div>
+                                                    <input type="text" placeholder="First Name" class="form-control" name="firstname" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group p-md-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Last Name</span>
+                                                    </div>
+                                                    <input type="text" placeholder="Last Name" class="form-control" name="lastname" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3 justify-content-center">
+                                            <button id="editClose" type="button" class="btn btn-danger m-1">Close</button>
+                                            <button type="submit" class="btn btn-secondary m-1">Save</button>
+                                        </div>
+                                    </form>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 py-5" id="petModal" style="display: none;">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container py-3">
+                                    <h2 class="text-center">Add Pet</h2>
+                                    <hr>
+                                    <div class="row px-lg-5 mx-lg-3 my-2">
+                                        <p class="ml-4 text-danger" id="addPetError" style="display: none;">An error occurred while adding pet! Please check your information and try again.</p>
+                                    </div>
+                                    <form id="petForm">
+                                        <div class="row px-lg-5 mx-lg-3 my-2">
+                                            <div class="form-group col-12">
+                                                <div class="input-group p-md-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Username</span>
+                                                    </div>
+                                                    <input id="uNameForPet" type="text" placeholder="Username" class="form-control" name="username" disabled
+                                                           required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row px-lg-5 mx-lg-3 my-2">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group p-md-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Name</span>
+                                                    </div>
+                                                    <input type="text" placeholder="Pet Name" class="form-control" name="petname" required id="petName">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <select class="custom-select" id="petType" name="pettype">
+                                                    <option value="Not Known" selected disabled>Choose your pet type</option>
+                                                    <option value="Cat">Cat</option>
+                                                    <option value="Dog">Dog</option>
+                                                    <option value="Bird">Bird</option>
+                                                    <option value="Fish">Fish</option>
+                                                    <option value="Rabbit">Rabbit</option>
+                                                  </select>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3 justify-content-center">
+                                            <button id="petClose" type="button" class="btn btn-danger m-1">Close</button>
+                                            <button type="submit" class="btn btn-secondary m-1">Save</button>
+                                        </div>
+                                    </form>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 py-5" style="display: none;" id="editPetModal">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container py-3">
+                                    <h2 class="text-center">Edit Pet</h2>
+                                    <hr>
+                                    <form id="petEdit">
+                                        <div class="row px-lg-5 mx-lg-3 my-2">
+                                            <div class="form-group col-12">
+                                                <div class="input-group p-md-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Username</span>
+                                                    </div>
+                                                    <input id="uNameForEditPet" type="text" placeholder="Username" class="form-control" name="username" disabled
+                                                           required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row px-lg-5 mx-lg-3 my-2">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group p-md-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Name</span>
+                                                    </div>
+                                                    <input type="text" placeholder="Pet Name" class="form-control" name="petname" required id="petEditName" data-pname="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <select class="custom-select" id="petEditType" name="pettype">
+                                                    <option value="Not Known" selected disabled>Choose your pet type</option>
+                                                    <option value="Cat">Cat</option>
+                                                    <option value="Dog">Dog</option>
+                                                    <option value="Bird">Bird</option>
+                                                    <option value="Fish">Fish</option>
+                                                    <option value="Rabbit">Rabbit</option>
+                                                  </select>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3 justify-content-center">
+                                            <button id="petEditClose" type="button" class="btn btn-danger m-1">Close</button>
+                                            <button type="submit" class="btn btn-secondary m-1">Save</button>
+                                        </div>
+                                    </form>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 py-5" id="yourPets" style="display: none;">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container py-3">
+                                    <h2 class="text-center">Pets</h2>
+                                    <div class="text-danger" id="petError"></div>
+                                    <hr>
+                                    <div class="table-responsive-md">
+                                        <table class="table table-bordered table-hover" id="responsive-table" style="display: table;">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">Owner</th>
+                                                    <th scope="col">Pet Name</th>
+                                                    <th scope="col">Pet Type</th>
+                                                    <th scope="col">Manage</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tablePet">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <a href="#nav" id="addNewPet" class="btn btn-primary">Add New Pet</a>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 py-5" id="secret" style="display: none;">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container py-3">
+                                    <h2 class="text-center">User List</h2>
+                                    <div class="text-danger" id="userError"></div>
+                                    <hr>
+                                    <div class="table-responsive-md">
+                                        <table class="table table-bordered table-hover" id="responsive-table" style="display: table;">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">User Name</th>
+                                                    <th scope="col">First Name</th>
+                                                    <th scope="col">Last Name</th>
+                                                    <th scope="col">Manage</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tableUser">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Login Form</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form id="formLogin">
+                    <div id="loginErrorArea">
+
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group px-md-3">
+                            <div class="input-group-prepend">
+                            <div class="input-group-text">username</div>
+                            </div>
+                            <input type="text" class="form-control" id="loginUname" name="loginUname">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group px-md-3">
+                            <div class="input-group-prepend">
+                            <div class="input-group-text">password</div>
+                            </div>
+                            <input type="password" class="form-control" id="loginPword" name="loginPword">
+                        </div>
+                      </div>
+                    <div class="row justify-content-center">
+                        <button type="submit" class="btn btn-secondary">Login</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+        </div>
+    </div>
+        <!--
+            <script type="text/typescript" src="scripts/script.ts"></script>
+            <script type="text/javascript" src="scripts/script.js"></script>
+        -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script type="module" src="main.js"></script>
+        <script type="text/javascript" src="./user/openUserDropdown.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
